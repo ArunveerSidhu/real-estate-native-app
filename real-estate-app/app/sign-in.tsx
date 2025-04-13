@@ -1,18 +1,27 @@
 import React from 'react'
-import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, Image, TouchableOpacity, Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import images from '@/constants/images'
 import icons from '@/constants/icons'
+import { login } from '@/lib/appwrite'
 
 
 const SignIn = () => {
 
-    const handleLogin = () => {};
+    const handleLogin = async () => {
+        const result = await login();
+
+        if (result) {
+            console.log('login success');
+        } else {
+            Alert.alert('Error', 'Something went wrong');
+        }
+    };
 
   return (
     <SafeAreaView className='bg-white h-full'>
         <ScrollView contentContainerClassName='h-full'>
-            <Image source={images.onboarding} className='w-full h-4/6' resizeMode='contain'></Image>
+            <Image source={images.onboarding} className='w-full h-4/6 mt-5' resizeMode='contain'></Image>
 
             <View className='px-10'>
                 <Text className='text-base text-center uppercase font-rubik text-black-200'>
@@ -42,3 +51,6 @@ const SignIn = () => {
 }
 
 export default SignIn
+
+
+// 67fbe1cf0028ed45e912

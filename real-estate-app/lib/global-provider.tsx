@@ -9,7 +9,6 @@ interface GlobalContextType {
   user: User | null;
   loading: boolean;
   refetch: (newParams: Record<string, string | number>) => Promise<void>;
-  error: string | null;
 }
 
 interface User {
@@ -30,7 +29,6 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
     data: user,
     loading,
     refetch,
-    error,
   } = useAppwrite({
     fn: getCurrentUser,
   });
@@ -44,7 +42,6 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
         user,
         loading,
         refetch,
-        error,
       }}
     >
       {children}
